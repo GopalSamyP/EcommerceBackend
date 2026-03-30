@@ -1,0 +1,6 @@
+/.idea
+user-service/mvnw
+user-service/mvnw.cmd
+user-service/.gitattributes
+/user-service/.mvn
+userservice/.gitattributes
