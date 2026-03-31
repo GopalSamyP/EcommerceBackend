@@ -4,3 +4,9 @@ user-service/mvnw.cmd
 user-service/.gitattributes
 /user-service/.mvn
 userservice/.gitattributes
+order-service/mvnw.cmd
+order-service/mvnw
+order-service/.gitattributes
+/order-service/.mvn
+/order-service/target
+order-service/HELP.md
