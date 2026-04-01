@@ -1,5 +1,6 @@
 package com.ecom.userservice.entity;
 
+import com.ecom.userservice.dto.Role;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -32,5 +33,7 @@ public class User {
     @Column(nullable = false, unique = true)
     private String mobile;
     private String address;
+    @Column(nullable = false)
+    private Role role; //ADMIN, USER
 
 }

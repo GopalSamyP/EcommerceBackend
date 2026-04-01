@@ -4,6 +4,7 @@ import com.ecom.userservice.dto.UserDTO;
 import com.ecom.userservice.dto.UserResponse;
 import com.ecom.userservice.entity.User;
 import com.ecom.userservice.service.UserService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -11,14 +12,17 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService,
+                          PasswordEncoder passwordEncoder) {
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @PostMapping
     public UserResponse create(@RequestBody UserDTO user) {
-        return userService.save(user);
+        return userService.save(user, passwordEncoder);
     }
 
     @GetMapping

@@ -15,17 +15,14 @@ public class UserService {
 
     private final UserRepository repo;
     private final UserMapper mapper;
-    private final PasswordEncoder passwordEncoder;
 
     public UserService(UserRepository repo,
-                       UserMapper mapper,
-                       PasswordEncoder passwordEncoder) {
+                       UserMapper mapper) {
         this.repo = repo;
         this.mapper = mapper;
-        this.passwordEncoder = passwordEncoder;
     }
 
-    public UserResponse save(UserDTO userRequest) {
+    public UserResponse save(UserDTO userRequest, PasswordEncoder passwordEncoder) {
         User user = mapper.toEntity(userRequest);
         user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
         User userEntity = repo.save(user);
@@ -40,6 +37,14 @@ public class UserService {
     public UserResponse getById(Long id) {
         User userEntity =  repo.findById(id).orElseThrow();
         return  mapper.toResponseDTO(userEntity);
+    }
+
+    public User findByUsername(String username) {
+        User user = repo.findByEmail(username);
+        if (user == null) {
+            throw new RuntimeException("User not found");
+        }
+        return user;
     }
 
     public UserResponse delete(Long id) {
