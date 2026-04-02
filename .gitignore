@@ -10,3 +10,6 @@ order-service/.gitattributes
 /order-service/.mvn
 /order-service/target
 order-service/HELP.md
+/user-service/.idea
+/api-gateway/target
+/user-service/target
